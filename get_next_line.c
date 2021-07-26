@@ -1,7 +1,5 @@
 #include "get_next_line.h"
 
-// #include <stdio.h>			//printf
-
 static int	ft_work_with_remainder(char **line, char **remainder, ssize_t bytes)
 {
 	char	*p;
@@ -27,12 +25,11 @@ static int	ft_work_with_remainder(char **line, char **remainder, ssize_t bytes)
 	return (150);
 }
 
-static void	ft_rewrite_remainder(char **remainder, char *buf) // func_name : verb_noun_... rewrite_remainder
-{
-	char	*to_free; 				// to_free
+static void	ft_rewrite_remainder(char **remainder, char *buf) 
+	char	*to_free; 			
 
 	if (!*remainder)
-		*remainder = ft_strdup(buf);			 // possible fail ulimit //check if buf NULL
+		*remainder = ft_strdup(buf);			
 	else
 	{
 		to_free = *remainder;
@@ -44,7 +41,7 @@ static void	ft_rewrite_remainder(char **remainder, char *buf) // func_name : ver
 int	get_next_line(int fd, char **line)
 {
 	ssize_t			bytes;
-	char			buf[BUFFER_SIZE + 1]; // char buf[BUFFER_SIZE + 1]; --> on stack
+	char			buf[BUFFER_SIZE + 1]; 
 	int				ret_ft;
 	static char		*remainder;
 
@@ -66,17 +63,3 @@ int	get_next_line(int fd, char **line)
 	}
 	return (0);
 }
-
-// int main()
-// {
-// 	char	*line;
-// 	int		fd;
-// 	int 	i;
-// 	fd = open ("test", O_RDONLY);
-// 	while ((i = get_next_line(fd, &line)))
-// 	{
-// 		printf("%d - %s\n", i, line);
-// 	}
-// 	printf("%d - %s\n", i, line);
-// 	return (0);
-// }
