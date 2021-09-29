@@ -6,7 +6,7 @@
 # include	<fcntl.h>
 
 # ifndef	BUFFER_SIZE
-#  define	BUFFER_SIZE	4026 // ulimit cache size
+#  define	BUFFER_SIZE	4026
 # endif
 
 int		get_next_line(int fd, char **line);
