@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmckinle <gmckinle@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/13 15:04:28 by gmckinle          #+#    #+#             */
+/*   Updated: 2021/11/13 15:04:29 by gmckinle         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 size_t	ft_strlen(const char *str)
@@ -28,6 +40,30 @@ char	*ft_strchr(char *str, int ch)
 	return (str);
 }
 
+void	*ft_calloc(size_t num, size_t size)
+{
+	char	*buf;
+	char	*tmpbuf;
+	size_t	i;
+
+	i = 0;
+	if (num >= 0 && size >= 0)
+	{
+		buf = (char *)malloc(sizeof(char) * (size * num));
+		if (!buf)
+			return (NULL);
+		tmpbuf = buf;
+		while (i < num)
+		{
+			*tmpbuf = '\0';
+			tmpbuf++;
+			i++;
+		}
+		return (buf);
+	}
+	return (NULL);
+}
+
 char	*ft_strdup(char *src)
 {
 	char	*str;
@@ -35,13 +71,12 @@ char	*ft_strdup(char *src)
 	char	*p;
 
 	len = ft_strlen(src);
-	str = (char *)malloc(1 * (len + 1));
+	str = ft_calloc((len + 1), sizeof(char));
 	if (!str)
 		return (NULL);
 	p = str;
 	while (*src)
 		*(p++) = *(src++);
-	*p = '\0';
 	return (str);
 }
 
@@ -53,7 +88,7 @@ char	*ft_join(char const *s1, char const *s2)
 
 	i = 0;
 	j = 0;
-	str = (char *)malloc(1 * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	str = ft_calloc((ft_strlen(s1) + ft_strlen(s2) + 1), sizeof(char));
 	if (!str)
 		return (NULL);
 	while (s1[i])
